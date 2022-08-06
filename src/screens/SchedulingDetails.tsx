@@ -12,8 +12,12 @@ import gasolineSvg from '../assets/gasoline.svg';
 import exchangeSvg from '../assets/exchange.svg';
 import peopleSvg from '../assets/people.svg';
 import Button from '../components/Button';
+import { Feather } from '@expo/vector-icons';
+import { useTheme } from 'styled-components';
 
-const CarDetails = () => {
+const SchedulingDetails = () => {
+    const theme = useTheme();
+
     return (
         <StyledContainer>
             <StyledHeader>
@@ -45,12 +49,33 @@ const CarDetails = () => {
                     <Accessory name="Auto" icon={exchangeSvg} />
                     <Accessory name="2 pessoas" icon={peopleSvg} />
                 </StyledAcessories>
-
-                <StyledAbout>
-                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultano na praça Real Maestranza de Sevilla. É um
-                    belíssimo carro para que gosta de aceletar.
-                </StyledAbout>
             </StyledContent>
+
+            <StyledRentalPeriod>
+                <StyledCalendarIcon>
+                    <Feather name="calendar" size={24} color={theme.colors.shape} />
+                </StyledCalendarIcon>
+
+                <StyledDateInfo>
+                    <StyledDateTitle>DE</StyledDateTitle>
+                    <StyledDateValue>18/06/2022</StyledDateValue>
+                </StyledDateInfo>
+
+                <Feather name="chevron-right" size={10} color={theme.colors.text} />
+
+                <StyledDateInfo>
+                    <StyledDateTitle>DE</StyledDateTitle>
+                    <StyledDateValue>18/06/2022</StyledDateValue>
+                </StyledDateInfo>
+            </StyledRentalPeriod>
+
+            <StyledPrice>
+                <StyledRentalPriceLabel>Total</StyledRentalPriceLabel>
+                <StyledRentalPriceDetails>
+                    <StyledRentalPriceQuota>R$ 580 x3 diárias</StyledRentalPriceQuota>
+                    <StyledRentalPriceTotal>R$ 2.900</StyledRentalPriceTotal>
+                </StyledRentalPriceDetails>
+            </StyledPrice>
 
             <StyledFooter>
                 <Button title="Confirmar" />
@@ -124,15 +149,6 @@ const Price = styled.Text`
     font-size: ${RFValue(25)}px;
 `;
 
-const StyledAbout = styled.Text`
-    font-family: ${({ theme }) => theme.fonts.primary_400};
-    color: ${({ theme }) => theme.colors.text};
-    font-size: ${RFValue(15)}px;
-    text-align: justify;
-    margin-top: 23px;
-    line-height: 25px;
-`;
-
 const StyledAcessories = styled.View`
     width: 100%;
 
@@ -151,4 +167,75 @@ const StyledFooter = styled.View`
     padding: 24px;
 `;
 
-export default CarDetails;
+const StyledRentalPeriod = styled.View`
+    width: 100%;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 40px;
+
+    border-bottom-width: 1px;
+    border-bottom-color: ${({ theme }) => theme.colors.line};
+    padding-bottom: 16px;
+`;
+
+const StyledCalendarIcon = styled.View`
+    width: 48px;
+    height: 48px;
+    background-color: ${({ theme }) => theme.colors.main};
+
+    justify-content: center;
+    align-items: center;
+`;
+
+const StyledDateInfo = styled.View``;
+
+const StyledDateTitle = styled.Text`
+    font-family: ${({ theme }) => theme.fonts.primary_500};
+    color: ${({ theme }) => theme.colors.text_detail};
+    font-size: ${RFValue(10)}px;
+
+    text-transform: uppercase;
+`;
+
+const StyledDateValue = styled.Text`
+    font-family: ${({ theme }) => theme.fonts.primary_500};
+    color: ${({ theme }) => theme.colors.title};
+    font-size: ${RFValue(15)}px;
+`;
+
+const StyledPrice = styled.View`
+    width: 100%;
+    margin-top: 16px;
+`;
+
+const StyledRentalPriceLabel = styled.Text`
+    font-family: ${({ theme }) => theme.fonts.primary_500};
+    color: ${({ theme }) => theme.colors.text_detail};
+    font-size: ${RFValue(10)}px;
+
+    text-transform: uppercase;
+`;
+
+const StyledRentalPriceDetails = styled.View`
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const StyledRentalPriceQuota = styled.Text`
+    font-family: ${({ theme }) => theme.fonts.primary_500};
+    color: ${({ theme }) => theme.colors.title};
+    font-size: ${RFValue(15)}px;
+`;
+
+const StyledRentalPriceTotal = styled.Text`
+    font-family: ${({ theme }) => theme.fonts.secondary_500};
+    color: ${({ theme }) => theme.colors.success};
+    font-size: ${RFValue(24)}px;
+`;
+
+export default SchedulingDetails;
