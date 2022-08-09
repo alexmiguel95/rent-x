@@ -1,4 +1,5 @@
 import React from 'react';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import GasolineSvg from '../assets/gasoline.svg';
@@ -13,13 +14,13 @@ interface ICarData {
     thumbnail: string;
 }
 
-interface IProps {
+interface IProps extends RectButtonProps {
     data: ICarData;
 }
 
-const Car = ({ data }: IProps) => {
+const Car = ({ data, ...rest }: IProps) => {
     return (
-        <StyledContainer>
+        <StyledContainer {...rest}>
             <StyledDetails>
                 <StyledBrand>{data.brand}</StyledBrand>
                 <StyledName>{data.name}</StyledName>
@@ -41,7 +42,7 @@ const Car = ({ data }: IProps) => {
     );
 }
 
-const StyledContainer = styled.View`
+const StyledContainer = styled(RectButton)`
     width: 100%;
     height: 126px;
 

@@ -5,12 +5,18 @@ import { useTheme } from 'styled-components';
 import ArrowSvg from '../assets/arrow.svg';
 import Button from '../components/Button';
 import Calendar from '../components/Calendar';
+import { useNavigation } from '@react-navigation/native';
+import { TypeRoute } from '../Routes';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface IDateValueProps {
     isSelected: boolean;
 }
 
+type TypeNavigation = NativeStackNavigationProp<TypeRoute, 'SchedulingDetails'>;
+
 const Scheduling = () => {
+    const navigation = useNavigation<TypeNavigation>();
     const theme = useTheme();
 
     return (
@@ -40,7 +46,7 @@ const Scheduling = () => {
             </StyledContent>
 
             <StyledFooter>
-                <Button title="confirmar" />
+                <Button title="confirmar" onPress={() => navigation.navigate('SchedulingDetails')} />
             </StyledFooter>
         </StyledContainer>
     );
