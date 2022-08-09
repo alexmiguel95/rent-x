@@ -12,8 +12,15 @@ import gasolineSvg from '../assets/gasoline.svg';
 import exchangeSvg from '../assets/exchange.svg';
 import peopleSvg from '../assets/people.svg';
 import Button from '../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import { TypeRoute } from '../Routes';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type TypeNavigation = NativeStackNavigationProp<TypeRoute, 'Scheduling'>;
 
 const CarDetails = () => {
+    const navigation = useNavigation<TypeNavigation>();
+
     return (
         <StyledContainer>
             <StyledHeader>
@@ -53,7 +60,7 @@ const CarDetails = () => {
             </StyledContent>
 
             <StyledFooter>
-                <Button title="Confirmar" />
+                <Button title="Confirmar" onPress={() => navigation.navigate('Scheduling')} />
             </StyledFooter>
         </StyledContainer>
     );

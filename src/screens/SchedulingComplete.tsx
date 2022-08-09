@@ -3,8 +3,14 @@ import LogoSvg from '../assets/logo_background_gray.svg';
 import DoneSvg from '../assets/done.svg';
 import { useWindowDimensions } from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
+import { useNavigation } from '@react-navigation/native';
+import { TypeRoute } from '../Routes';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type TypeNavigation = NativeStackNavigationProp<TypeRoute, 'Home'>;
 
 const SchedulingComplete = () => {
+    const navigation = useNavigation<TypeNavigation>();
     const { width } = useWindowDimensions();
 
     return (
@@ -19,7 +25,7 @@ const SchedulingComplete = () => {
             </StyledContent>
 
             <StyledFooter>
-                <ConfirmButton title="OK" />
+                <ConfirmButton title="OK" onPress={() => navigation.navigate('Home')} />
             </StyledFooter>
         </StyledContainer>
     );

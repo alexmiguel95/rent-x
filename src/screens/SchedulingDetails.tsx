@@ -14,8 +14,14 @@ import peopleSvg from '../assets/people.svg';
 import Button from '../components/Button';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
+import { TypeRoute } from '../Routes';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type TypeNavigation = NativeStackNavigationProp<TypeRoute, 'SchedulingComplete'>;
 
 const SchedulingDetails = () => {
+    const navigation = useNavigation<TypeNavigation>();
     const theme = useTheme();
 
     return (
@@ -78,7 +84,7 @@ const SchedulingDetails = () => {
             </StyledPrice>
 
             <StyledFooter>
-                <Button title="Confirmar" />
+                <Button title="Alugar agora" color={theme.colors.success} onPress={() => navigation.navigate('SchedulingComplete')} />
             </StyledFooter>
         </StyledContainer>
     );

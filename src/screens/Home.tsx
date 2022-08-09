@@ -5,8 +5,15 @@ import Logo from '../assets/logo.svg';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Car from '../components/Car';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { TypeRoute } from '../Routes';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type TypeNavigation = NativeStackNavigationProp<TypeRoute, 'CarDetails'>;
 
 const Home = () => {
+    const navigation = useNavigation<TypeNavigation>();
+
     const cardData = {
         brand: 'Audi',
         name: 'RS 5 Coupé',
@@ -14,8 +21,8 @@ const Home = () => {
             period: 'AO DIA',
             price: 120,
         },
-        thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png'
-    }
+        thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png',
+    };
 
     return (
         <StyledCointainer>
@@ -27,14 +34,14 @@ const Home = () => {
                 </StyledHeaderContent>
             </StyledHeader>
 
-            <CarList 
-                data={[1,2,3]}
+            <CarList
+                data={[1, 2, 3]}
                 keyExtractor={(item: any) => String(item)}
-                renderItem={() => <Car data={cardData} />} 
+                renderItem={() => <Car data={cardData} onPress={() => navigation.navigate('CarDetails')} />}
             />
         </StyledCointainer>
     );
-}
+};
 
 const StyledCointainer = styled.SafeAreaView`
     flex: 1;
@@ -65,9 +72,9 @@ const StyledTotalCars = styled.Text`
 
 const CarList = styled(FlatList).attrs({
     contentContainerStyle: {
-        padding: 24
+        padding: 24,
     },
-    showsVerticalScrollIndicator: false
+    showsVerticalScrollIndicator: false,
 })``;
 
 export default Home;
